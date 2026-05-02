@@ -106,7 +106,7 @@ export default function Experience() {
   return (
     <section
       ref={containerRef}
-      className="bg-white dark:bg-[#0F172A] py-10 sm:py-14 md:py-20 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="bg-white dark:bg-background py-10 sm:py-14 md:py-20 max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
       id="experience"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-14 md:gap-10 lg:gap-16">
@@ -134,7 +134,7 @@ export default function Experience() {
                 subtitle={exp.company}
                 desc={exp.desc}
                 dotColor="bg-primary"
-                ringColor="ring-white dark:ring-[#0F172A]"
+                ringColor="ring-white dark:ring-background"
               />
             ))}
           </div>
@@ -163,7 +163,7 @@ export default function Experience() {
                 subtitle={edu.school}
                 desc={edu.desc}
                 dotColor="bg-tertiary"
-                ringColor="ring-white dark:ring-[#0F172A]"
+                ringColor="ring-white dark:ring-background"
               />
             ))}
           </div>

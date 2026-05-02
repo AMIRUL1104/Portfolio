@@ -36,12 +36,12 @@ export default function Hero() {
   const words = headline.split(" ");
 
   return (
-    <section ref={containerRef} className="relative w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 lg:gap-16 overflow-hidden">
+    <section ref={containerRef} className="relative w-full max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 lg:gap-16 overflow-hidden">
       
       {/* Background Glow */}
       <div 
         ref={glowRef}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-primary/20 via-blue-500/10 to-transparent blur-[120px] rounded-full -z-10 bg-[length:200%_200%]"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-linear-to-tr from-primary/20 via-blue-500/10 to-transparent blur-[120px] rounded-full -z-10 bg-size-[200%_200%]"
       />
 
       {/* Text Content */}
@@ -125,7 +125,7 @@ export default function Hero() {
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="relative shrink-0 w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 group mx-auto md:mx-0"
       >
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-blue-500 blur-xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity" />
+        <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-blue-500 blur-xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity" />
         <div className="relative w-full h-full rounded-full border-4 border-blue-400 p-1.5 overflow-hidden bg-white dark:bg-gray-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
           <Image
             className="object-cover object-center rounded-full"

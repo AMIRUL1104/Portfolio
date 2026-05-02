@@ -62,10 +62,10 @@ export default function Skills() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} id="skills" className="bg-background dark:bg-[#0F172A] transition-colors duration-300 overflow-hidden">
+    <div ref={containerRef} id="skills" className="bg-background transition-colors duration-300 overflow-hidden">
 
       {/* Skills Overview */}
-      <section className="py-10 sm:py-14 md:py-20 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-10 sm:py-14 md:py-20 max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

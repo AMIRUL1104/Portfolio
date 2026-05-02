@@ -54,7 +54,7 @@ export default function Navbar() {
       style={{ height, backgroundColor: isDark ? darkBackgroundColor : backgroundColor, backdropBlur }}
       className="sticky top-0 w-full z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
     >
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
 
         {/* Logo */}
         <motion.a 
@@ -123,7 +123,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             ref={menuRef}
-            className="md:hidden overflow-hidden bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-gray-800"
+            className="md:hidden overflow-hidden bg-white dark:bg-background border-t border-gray-100 dark:border-gray-800"
           >
             <ul className="flex flex-col gap-1 px-4 pb-6 pt-2">
               {navLinks.map(({ label, href }) => (

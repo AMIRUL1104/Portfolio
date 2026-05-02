@@ -54,14 +54,14 @@ export default function GlobalAnimations() {
     <>
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100] origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-primary z-100 origin-left"
         style={{ scaleX }}
       />
 
       {/* Custom Cursor */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 right-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-9999 mix-blend-difference hidden md:block"
         style={{ transform: 'translate(-50%, -50%)' }}
       />
     </>

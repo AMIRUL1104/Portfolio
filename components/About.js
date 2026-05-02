@@ -36,7 +36,7 @@ export default function About() {
 
   return (
     <section ref={containerRef} className="bg-surface dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden" id="about">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Title */}
         <motion.h2 
