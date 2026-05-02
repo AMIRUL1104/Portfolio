@@ -1,5 +1,32 @@
+'use client';
+
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function About() {
+  const containerRef = useRef(null);
+  const textRef = useRef(null);
+
+  useGSAP(() => {
+    const lines = textRef.current.querySelectorAll('.reveal-line');
+    
+    lines.forEach((line) => {
+      gsap.from(line, {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: line,
+          start: "top 90%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+  }, { scope: containerRef });
+
   const cards = [
     { icon: 'code', title: 'Frontend Development', desc: 'Building responsive web apps using React, JavaScript, HTML & CSS.' },
     { icon: 'devices', title: 'Responsive Design', desc: 'Creating mobile-first layouts that work across all devices.' },
@@ -8,23 +35,28 @@ export default function About() {
   ];
 
   return (
-    <section className="bg-surface dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300" id="about">
+    <section ref={containerRef} className="bg-surface dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden" id="about">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-[#3B82F6] mb-6 sm:mb-8 md:mb-10">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-[#3B82F6] mb-6 sm:mb-8 md:mb-10"
+        >
           About Me
-        </h2>
+        </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-14 items-start">
 
           {/* Bio Text */}
-          <div className="space-y-4 sm:space-y-5">
-            <p className="text-sm sm:text-base md:text-[15px] lg:text-base text-on-surface/80 dark:text-gray-300 leading-relaxed sm:leading-loose">
+          <div ref={textRef} className="space-y-4 sm:space-y-5">
+            <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-on-surface/80 dark:text-gray-300 leading-relaxed sm:leading-loose">
               I'm Amirul Islam, a frontend developer focused on building clean, responsive, and user-friendly web applications.
               I mainly work with React and modern JavaScript to create real-world projects that solve practical problems.
             </p>
-            <p className="text-sm sm:text-base md:text-[15px] lg:text-base text-on-surface/80 dark:text-gray-300 leading-relaxed sm:leading-loose">
+            <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-on-surface/80 dark:text-gray-300 leading-relaxed sm:leading-loose">
               Currently, I'm continuously improving my skills by building projects, exploring better UI patterns, and
               strengthening my core fundamentals. My goal is to become a job-ready frontend developer and contribute
               to real production-level applications.
@@ -34,9 +66,14 @@ export default function About() {
           {/* Skill Cards */}
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
             {cards.map((card, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-background dark:bg-secondary/20 p-4 sm:p-5 rounded-xl border border-outline-variant dark:border-gray-700 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="bg-background dark:bg-secondary/20 p-4 sm:p-5 rounded-xl border border-outline-variant dark:border-gray-700 shadow-sm hover:shadow-xl transition-all cursor-default group"
               >
                 <span className="material-symbols-outlined text-tertiary text-[22px] sm:text-[26px] mb-2 group-hover:scale-110 transition-transform block">
                   {card.icon}
@@ -47,7 +84,7 @@ export default function About() {
                 <p className="text-xs sm:text-[13px] text-on-surface/60 dark:text-gray-400 leading-relaxed">
                   {card.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -56,4 +93,3 @@ export default function About() {
     </section>
   );
 }
-

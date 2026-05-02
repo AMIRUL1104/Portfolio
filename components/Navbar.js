@@ -1,8 +1,7 @@
-
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { label: 'About',      href: '#about' },
@@ -13,9 +12,16 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isDark, setIsDark]       = useState(false);
-  const [menuOpen, setMenuOpen]   = useState(false);
-  const menuRef                   = useRef(null);
+  const [isDark, setIsDark] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
+  const menuRef = useRef(null);
+  
+  const { scrollY } = useScroll();
+  const height = useTransform(scrollY, [0, 50], ["80px", "64px"]);
+  const backgroundColor = useTransform(scrollY, [0, 50], ["rgba(255, 255, 255, 0.8)", "rgba(255, 255, 255, 0.95)"]);
+  const darkBackgroundColor = useTransform(scrollY, [0, 50], ["rgba(15, 23, 42, 0.8)", "rgba(15, 23, 42, 0.95)"]);
+  const backdropBlur = useTransform(scrollY, [0, 50], ["blur(12px)", "blur(20px)"]);
 
   /* ── Theme logic ── */
   useEffect(() => {
@@ -43,26 +49,40 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  useEffect(() => {
-    const handler = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
-  }, []);
-
   return (
-    <nav className="sticky top-0 w-full z-50 bg-white/80 dark:bg-[#0F172A]/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
+    <motion.nav 
+      style={{ height, backgroundColor: isDark ? darkBackgroundColor : backgroundColor, backdropBlur }}
+      className="sticky top-0 w-full z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
+    >
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
 
         {/* Logo */}
-        <a className="text-xl sm:text-2xl font-extrabold text-blue-600 dark:text-white tracking-tight" href="#">
+        <motion.a 
+          whileHover={{ scale: 1.05 }}
+          className="text-xl sm:text-2xl font-extrabold text-blue-600 dark:text-white tracking-tight" 
+          href="#"
+        >
           Amirul
-        </a>
+        </motion.a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 font-semibold">
+        <div className="hidden md:flex items-center gap-8 font-semibold h-full">
           {navLinks.map(({ label, href }) => (
-            <a key={href} href={href} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white transition-colors">
+            <a 
+              key={href} 
+              href={href} 
+              onMouseEnter={() => setHoveredLink(href)}
+              onMouseLeave={() => setHoveredLink(null)}
+              className="relative text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white transition-colors py-2"
+            >
               {label}
+              {hoveredLink === href && (
+                <motion.div 
+                  layoutId="nav-underline"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
             </a>
           ))}
         </div>
@@ -70,47 +90,57 @@ export default function Navbar() {
         {/* Buttons Group */}
         <div className="flex items-center gap-2">
           
-          {/* 1. Theme Toggle */}
-          <button onClick={toggleTheme} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all">
+          {/* Theme Toggle */}
+          <motion.button 
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleTheme} 
+            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
+          >
             <span className="material-symbols-outlined block text-blue-600 dark:text-blue-400">
               {isDark ? 'light_mode' : 'dark_mode'}
             </span>
-          </button>
+          </motion.button>
 
-          {/* 2. Menu Button (Right side of toggle) */}
-          <button 
+          {/* Menu Button */}
+          <motion.button 
+            whileTap={{ scale: 0.9 }}
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
           >
             <span className="material-symbols-outlined block text-blue-600 dark:text-blue-400">
               {menuOpen ? 'close' : 'menu'}
             </span>
-          </button>
+          </motion.button>
 
         </div>
       </div>
 
-      {/* Mobile Dropdown (Column Layout) */}
-      <div
-        ref={menuRef}
-        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <ul className="flex flex-col gap-1 px-4 pb-6 pt-2 bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-gray-800">
-          {navLinks.map(({ label, href }) => (
-            <li key={href}>
-              <a 
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className="block w-full px-4 py-3 text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-white rounded-lg transition-all"
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </nav>
+      {/* Mobile Dropdown */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            ref={menuRef}
+            className="md:hidden overflow-hidden bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-gray-800"
+          >
+            <ul className="flex flex-col gap-1 px-4 pb-6 pt-2">
+              {navLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <a 
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block w-full px-4 py-3 text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-white rounded-lg transition-all"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }

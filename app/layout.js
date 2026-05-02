@@ -20,6 +20,8 @@ export const metadata = {
 
 import SmoothScroll from "@/components/SmoothScroll";
 import BackToTop from "@/components/BackToTop";
+import GlobalAnimations from "@/components/GlobalAnimations";
+import { AnimatePresence } from "framer-motion";
 
 export default function RootLayout({ children }) {
   return (
@@ -29,7 +31,10 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         <SmoothScroll>
-          {children}
+          <GlobalAnimations />
+          <AnimatePresence mode="wait">
+            {children}
+          </AnimatePresence>
           <BackToTop />
         </SmoothScroll>
       </body>

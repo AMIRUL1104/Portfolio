@@ -1,9 +1,18 @@
+'use client';
+
+import { useRef } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import carromImg from "@/public/assets/carrom-pro.png";
 import notioImg from "@/public/assets/notio.png";
 import keenImg from "@/public/assets/keen.png";
 
 export default function Projects() {
+  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+
   const projects = [
     {
       title: "Notio – Smart Task Dashboard",
@@ -37,33 +46,75 @@ export default function Projects() {
     }
   ];
 
+  useGSAP(() => {
+    // Parallax effect for images
+    const images = gsap.utils.toArray('.project-image-inner');
+    images.forEach((img) => {
+      gsap.to(img, {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: img.parentElement,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    });
+
+    // Pinning and reveal
+    const projectItems = gsap.utils.toArray('.project-item');
+    projectItems.forEach((item, i) => {
+      gsap.from(item, {
+        opacity: 0,
+        y: 100,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+  }, { scope: containerRef });
+
   return (
     <section
-      className="bg-surface dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300"
+      ref={containerRef}
+      className="bg-surface dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden"
       id="projects"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-[#3B82F6] mb-8 sm:mb-10 md:mb-14">
+        <motion.h2 
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-[#3B82F6] mb-8 sm:mb-10 md:mb-14"
+        >
           Selected Projects
-        </h2>
+        </motion.h2>
 
-        <div className="space-y-10 sm:space-y-14 md:space-y-20">
+        <div className="space-y-16 sm:space-y-24 md:space-y-32">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`flex flex-col ${project.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-center group`}
+              whileHover={{ y: -8 }}
+              className={`project-item flex flex-col ${project.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-center group relative`}
             >
               {/* Project Image */}
               <div className="w-full md:flex-1 overflow-hidden rounded-xl shadow-lg border border-outline-variant dark:border-gray-700 aspect-video relative">
-                <Image
-                  className="object-cover group-hover:scale-105 transition-transform duration-500 w-full h-full"
-                  alt={project.title}
-                  src={project.img}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+                <div className="project-image-inner absolute inset-[-20%] w-[140%] h-[140%]">
+                  <Image
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
+                    alt={project.title}
+                    src={project.img}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
               </div>
 
@@ -106,29 +157,31 @@ export default function Projects() {
 
                 {/* Links */}
                 <div className="flex gap-3 sm:gap-4 pt-1">
-                  <a
+                  <motion.a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, x: 5 }}
                     className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary dark:text-[#3B82F6] hover:underline underline-offset-2 transition-all"
                   >
                     <span className="material-symbols-outlined text-[16px] sm:text-[18px]">open_in_new</span>
                     Live
-                  </a>
+                  </motion.a>
                   
-                  <a
+                  <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, x: 5 }}
                     className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary dark:text-[#3B82F6] hover:underline underline-offset-2 transition-all"
                   >
                     <span className="material-symbols-outlined text-[16px] sm:text-[18px]">code</span>
                     Code
-                  </a>
+                  </motion.a>
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

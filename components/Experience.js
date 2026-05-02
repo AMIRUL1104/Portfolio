@@ -1,4 +1,13 @@
+'use client';
+
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
 export default function Experience() {
+  const containerRef = useRef(null);
+
   const experiences = [
     {
       period: "2025 — PRESENT",
@@ -41,11 +50,35 @@ export default function Experience() {
     }
   ];
 
-  const TimelineItem = ({ period, title, subtitle, desc, dotColor, ringColor }) => (
-    <div className="pl-6 sm:pl-8 relative group">
+  useGSAP(() => {
+    // Draw vertical lines
+    const lines = gsap.utils.toArray('.timeline-line');
+    lines.forEach((line) => {
+      gsap.from(line, {
+        scaleY: 0,
+        transformOrigin: "top",
+        ease: "none",
+        scrollTrigger: {
+          trigger: line,
+          start: "top 70%",
+          end: "bottom 70%",
+          scrub: true
+        }
+      });
+    });
+  }, { scope: containerRef });
+
+  const TimelineItem = ({ period, title, subtitle, desc, dotColor, ringColor, index, side }) => (
+    <motion.div 
+      initial={{ opacity: 0, x: side === 'left' ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="pl-6 sm:pl-8 relative group"
+    >
       {/* Timeline dot */}
       <div
-        className={`absolute left-[-7px] sm:left-[-8px] top-[3px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full ${dotColor} ${ringColor} ring-4 group-hover:scale-125 transition-transform`}
+        className={`absolute left-[-7px] sm:left-[-8px] top-[3px] w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full ${dotColor} ${ringColor} ring-4 group-hover:scale-125 transition-transform z-10`}
       />
 
       {/* Period */}
@@ -67,53 +100,70 @@ export default function Experience() {
       <p className="text-xs sm:text-[13px] md:text-sm text-on-surface/70 dark:text-gray-400 leading-relaxed">
         {desc}
       </p>
-    </div>
+    </motion.div>
   );
 
   return (
     <section
-      className="py-10 sm:py-14 md:py-20 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8"
+      ref={containerRef}
+      className="bg-white dark:bg-[#0F172A] py-10 sm:py-14 md:py-20 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
       id="experience"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-14 md:gap-10 lg:gap-16">
 
         {/* Experience */}
-        <div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-[#3B82F6] mb-6 sm:mb-8 md:mb-10">
+        <div className="relative">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 md:mb-10"
+          >
             Experience
-          </h2>
+          </motion.h2>
 
-          <div className="relative border-l-2 border-primary/20 dark:border-gray-700 ml-3 sm:ml-4 space-y-6 sm:space-y-8">
+          <div className="relative ml-3 sm:ml-4 space-y-6 sm:space-y-8">
+            <div className="timeline-line absolute left-0 top-2 bottom-0 w-0.5 bg-primary/20 dark:border-gray-700" />
             {experiences.map((exp, index) => (
               <TimelineItem
                 key={index}
+                index={index}
+                side="left"
                 period={exp.period}
                 title={exp.role}
                 subtitle={exp.company}
                 desc={exp.desc}
                 dotColor="bg-primary"
-                ringColor="ring-background dark:ring-[#0F172A]"
+                ringColor="ring-white dark:ring-[#0F172A]"
               />
             ))}
           </div>
         </div>
 
         {/* Education */}
-        <div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-[#3B82F6] mb-6 sm:mb-8 md:mb-10">
+        <div className="relative">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 md:mb-10"
+          >
             Education
-          </h2>
+          </motion.h2>
 
-          <div className="relative border-l-2 border-secondary/20 dark:border-gray-700 ml-3 sm:ml-4 space-y-6 sm:space-y-8">
+          <div className="relative ml-3 sm:ml-4 space-y-6 sm:space-y-8">
+            <div className="timeline-line absolute left-0 top-2 bottom-0 w-0.5 bg-tertiary/20 dark:border-gray-700" />
             {education.map((edu, index) => (
               <TimelineItem
                 key={index}
+                index={index}
+                side="right"
                 period={edu.period}
                 title={edu.degree}
                 subtitle={edu.school}
                 desc={edu.desc}
                 dotColor="bg-tertiary"
-                ringColor="ring-background dark:ring-[#0F172A]"
+                ringColor="ring-white dark:ring-[#0F172A]"
               />
             ))}
           </div>
