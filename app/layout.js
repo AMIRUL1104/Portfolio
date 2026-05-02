@@ -18,6 +18,9 @@ export const metadata = {
   description: "Crafting robust digital experiences with a focus on performance, scalability, and user-centric design.",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+import BackToTop from "@/components/BackToTop";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable} scroll-smooth`}>
@@ -25,7 +28,10 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" />
       </head>
       <body className="antialiased">
-        {children}
+        <SmoothScroll>
+          {children}
+          <BackToTop />
+        </SmoothScroll>
       </body>
     </html>
   );

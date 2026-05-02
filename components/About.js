@@ -1,3 +1,4 @@
+
 export default function About() {
   const cards = [
     { icon: 'code', title: 'Frontend Development', desc: 'Building responsive web apps using React, JavaScript, HTML & CSS.' },
@@ -55,3 +56,4 @@ export default function About() {
     </section>
   );
 }
+
