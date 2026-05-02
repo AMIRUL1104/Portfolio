@@ -26,7 +26,7 @@ export default function Contact() {
   return (
     <section
       ref={containerRef}
-      className="py-10 sm:py-14 md:py-20 relative bg-linear-to-br from-primary to-secondary text-white transition-all duration-500 overflow-hidden"
+      className="py-10 sm:py-14 md:py-20 relative bg-linear-to-br from-blue-600 to-blue-700 dark:from-slate-900 dark:to-[#0F172A] text-white transition-all duration-500 overflow-hidden"
       id="contact"
     >
       <div className="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">

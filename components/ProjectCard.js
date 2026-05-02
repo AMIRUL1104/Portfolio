@@ -47,7 +47,7 @@ export default function ProjectCard({ project, index }) {
         </h3>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm md:text-[15px] text-slate-600 dark:text-gray-400 leading-relaxed line-clamp-3">
+        <p className="text-xs sm:text-sm md:text-[15px] text-slate-700 dark:text-gray-400 leading-relaxed line-clamp-3">
           {project.description}
         </p>
 

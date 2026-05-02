@@ -61,7 +61,7 @@ export default function Skills() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} id="skills" className="bg-white dark:bg-[#0F172A] transition-colors duration-300 overflow-hidden">
+    <div ref={containerRef} id="skills" className="bg-background transition-colors duration-300 overflow-hidden">
 
       {/* Skills Overview */}
       <section className="py-10 sm:py-14 md:py-20 max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,7 +74,7 @@ export default function Skills() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2 sm:mb-3">
             Skills & Tools
           </h2>
-          <p className="text-sm sm:text-base text-slate-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-2">
+          <p className="text-sm sm:text-base text-slate-700 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-2">
             Technologies and tools I use to build fast, responsive, and real-world web applications.
           </p>
         </motion.div>
@@ -88,7 +88,7 @@ export default function Skills() {
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-slate-50 dark:bg-[#1E293B] p-5 sm:p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-gray-800 transition-all flex flex-col items-start"
+              className="bg-surface p-5 sm:p-6 rounded-3xl shadow-sm border border-outline-variant transition-all flex flex-col items-start"
             >
               <div className={`w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 ${group.iconBg} ${group.iconColor} rounded-2xl flex items-center justify-center mb-4`}>
                 <span className="material-symbols-outlined text-[24px] sm:text-[28px] md:text-[32px]">
@@ -100,7 +100,7 @@ export default function Skills() {
                 {group.title}
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-gray-400 mb-5 grow leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-gray-400 mb-5 grow leading-relaxed">
                 {group.desc}
               </p>
 
@@ -112,7 +112,7 @@ export default function Skills() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: (index * 0.1) + (i * 0.05) }}
-                    className="px-2.5 sm:px-3 py-1 rounded-full border border-slate-200 dark:border-gray-700 text-[11px] sm:text-xs font-semibold text-slate-700 dark:text-gray-300 bg-white dark:bg-white/5"
+                    className="px-2.5 sm:px-3 py-1 rounded-full border border-slate-200 dark:border-gray-700 text-[11px] sm:text-xs font-semibold text-slate-800 dark:text-gray-300 bg-white dark:bg-white/5"
                   >
                     {skill}
                   </motion.span>
@@ -140,7 +140,7 @@ export default function Skills() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.1, y: -5 }}
-                className="bg-slate-50 dark:bg-[#1E293B] px-6 py-4 min-w-[140px] rounded-xl border border-slate-200 dark:border-gray-700 flex flex-col items-center gap-2 shrink-0 transition-shadow hover:shadow-lg cursor-default"
+                className="bg-surface px-6 py-4 min-w-[140px] rounded-xl border border-outline-variant flex flex-col items-center gap-2 shrink-0 transition-shadow hover:shadow-lg cursor-default"
               >
                 <span className="material-symbols-outlined text-blue-600 dark:text-blue-400 text-[28px]">
                   {item.icon}

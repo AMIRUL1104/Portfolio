@@ -35,7 +35,7 @@ export default function About() {
   ];
 
   return (
-    <section ref={containerRef} className="bg-slate-50 dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden" id="about">
+    <section ref={containerRef} className="bg-surface py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden" id="about">
       <div className="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Title */}
@@ -52,11 +52,11 @@ export default function About() {
 
           {/* Bio Text */}
           <div ref={textRef} className="space-y-4 sm:space-y-5">
-            <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-700 dark:text-gray-300 leading-relaxed sm:leading-loose">
+            <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-800 dark:text-slate-300 leading-relaxed sm:leading-loose">
               I'm Amirul Islam, a frontend developer focused on building clean, responsive, and user-friendly web applications.
               I mainly work with React and modern JavaScript to create real-world projects that solve practical problems.
             </p>
-            <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-700 dark:text-gray-300 leading-relaxed sm:leading-loose">
+            <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-800 dark:text-slate-300 leading-relaxed sm:leading-loose">
               Currently, I'm continuously improving my skills by building projects, exploring better UI patterns, and
               strengthening my core fundamentals. My goal is to become a job-ready frontend developer and contribute
               to real production-level applications.
@@ -78,10 +78,10 @@ export default function About() {
                 <span className="material-symbols-outlined text-amber-500 dark:text-amber-400 text-[22px] sm:text-[26px] mb-2 group-hover:scale-110 transition-transform block">
                   {card.icon}
                 </span>
-                <h3 className="text-sm sm:text-[15px] font-bold mb-1.5 text-slate-900 dark:text-white leading-snug">
+                <h3 className="text-sm sm:text-[15px] font-bold mb-1.5 text-heading leading-snug">
                   {card.title}
                 </h3>
-                <p className="text-xs sm:text-[13px] text-slate-500 dark:text-gray-400 leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-slate-600 dark:text-slate-400 leading-relaxed">
                   {card.desc}
                 </p>
               </motion.div>

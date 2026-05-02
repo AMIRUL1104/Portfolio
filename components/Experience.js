@@ -96,7 +96,7 @@ export default function Experience() {
       </p>
 
       {/* Description */}
-      <p className="text-xs sm:text-[13px] md:text-sm text-slate-600 dark:text-gray-400 leading-relaxed">
+      <p className="text-xs sm:text-[13px] md:text-sm text-slate-700 dark:text-gray-400 leading-relaxed">
         {desc}
       </p>
     </motion.div>
@@ -105,7 +105,7 @@ export default function Experience() {
   return (
     <section
       ref={containerRef}
-      className="bg-white dark:bg-[#0F172A] py-10 sm:py-14 md:py-20 max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="bg-background py-10 sm:py-14 md:py-20 max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
       id="experience"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-14 md:gap-10 lg:gap-16">

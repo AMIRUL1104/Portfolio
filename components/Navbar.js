@@ -75,7 +75,7 @@ const handleMobileNavClick = (e, href) => {
         {/* Logo */}
         <motion.a 
           whileHover={{ scale: 1.05 }}
-          className="text-xl sm:text-2xl font-extrabold text-blue-600 dark:text-white tracking-tight" 
+          className="text-xl sm:text-2xl font-extrabold text-blue-600 dark:text-blue-400 tracking-tight" 
           href="#"
         >
           Amirul
@@ -89,7 +89,7 @@ const handleMobileNavClick = (e, href) => {
               href={href} 
               onMouseEnter={() => setHoveredLink(href)}
               onMouseLeave={() => setHoveredLink(null)}
-              className="relative text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white transition-colors py-2"
+              className="relative text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white transition-colors py-2"
             >
               {label}
               {hoveredLink === href && (
@@ -147,7 +147,7 @@ const handleMobileNavClick = (e, href) => {
                     <button                          // ← changed from <a> to <button>
                       onClick={(e) => handleMobileNavClick(e, href)}
                       className="block w-full text-left px-4 py-3 text-sm font-bold
-                      text-gray-700 dark:text-gray-300 hover:bg-blue-50
+                      text-slate-800 dark:text-slate-200 hover:bg-blue-50
                       dark:hover:bg-blue-900/20 hover:text-blue-600
                       dark:hover:text-white rounded-lg transition-all"
                     >

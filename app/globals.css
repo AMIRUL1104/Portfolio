@@ -4,6 +4,9 @@
   --font-manrope: var(--font-manrope);
   --font-inter: var(--font-inter);
 
+  /* Dark Mode Strategy */
+  --dark-mode: selector;
+
   /* Custom Colors */
   --color-on-surface: #0F172A;
   --color-surface: #f8fafc;
@@ -17,6 +20,30 @@
 
   /* Spacing */
   --spacing-container-max: 1280px;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0F172A;
+  --text-heading: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+}
+
+.dark {
+  --background: #0F172A;
+  --foreground: #F8FAFC;
+  --surface: #1E293B;
+  --text-heading: #f8fafc;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  --color-primary: #3B82F6;
+  --color-secondary: #334155;
+  --color-on-surface: #F8FAFC;
+  --color-surface: #1E293B;
+  --color-background: #0F172A;
+  --color-outline-variant: #334155;
+  --color-on-surface-variant: #94A3B8;
 }
 
 @layer utilities {
@@ -34,31 +61,16 @@
   .bg-secondary      { background-color: var(--color-secondary); }
   .bg-tertiary       { background-color: var(--color-tertiary); }
   .text-on-surface-variant { color: var(--color-on-surface-variant); }
-  /* Explicit muted text utilities (opacity-based tokens don't work reliably) */
-  .text-muted        { color: #64748b; }  /* slate-500 */
-  .text-body         { color: #475569; }  /* slate-600 */
-  .text-heading      { color: #0f172a; }  /* slate-900 */
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #0F172A;
-}
-
-.dark {
-  --background: #0F172A;
-  --foreground: #F8FAFC;
-  --surface: #1E293B;
-  --color-primary: #3B82F6;
-  --color-on-surface: #F8FAFC;
-  --color-surface: #1E293B;
-  --color-background: #0F172A;
-  --color-outline-variant: #334155;
+  
+  /* Theme-aware text utilities */
+  .text-heading      { color: var(--text-heading); }
+  .text-body         { color: var(--text-body); }
+  .text-muted        { color: var(--text-muted); }
 }
 
 body {
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--text-body);
   font-family: var(--font-inter), sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }

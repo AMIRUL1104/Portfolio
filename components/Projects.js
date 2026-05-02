@@ -46,7 +46,7 @@ export default function Projects() {
   return (
     <section
       ref={containerRef}
-      className="bg-slate-50 dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden"
+      className="bg-surface py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden"
       id="projects"
     >
       <div className="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">

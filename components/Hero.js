@@ -65,7 +65,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-slate-700 dark:text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl"
+          className="text-slate-800 dark:text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium"
         >
           Frontend Developer
         </motion.h2>
@@ -74,7 +74,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="text-slate-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-[550px] mx-auto md:mx-0"
+          className="text-slate-700 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-[550px] mx-auto md:mx-0"
         >
           I build fast, responsive, and user-focused web applications using modern technologies like React.
           Focused on clean UI, performance, and real-world problem solving.
