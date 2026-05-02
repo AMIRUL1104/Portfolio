@@ -10,7 +10,6 @@ import notioImg from "@/public/assets/notio.png";
 import keenImg from "@/public/assets/keen.png";
 
 export default function Projects() {
-  const sectionRef = useRef(null);
   const containerRef = useRef(null);
 
   const projects = [
@@ -62,9 +61,9 @@ export default function Projects() {
       });
     });
 
-    // Pinning and reveal
+    // Staggered reveal
     const projectItems = gsap.utils.toArray('.project-item');
-    projectItems.forEach((item, i) => {
+    projectItems.forEach((item) => {
       gsap.from(item, {
         opacity: 0,
         y: 100,
@@ -82,7 +81,7 @@ export default function Projects() {
   return (
     <section
       ref={containerRef}
-      className="bg-surface dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden"
+      className="bg-slate-50 dark:bg-[#1E293B] py-10 sm:py-14 md:py-20 transition-colors duration-300 overflow-hidden"
       id="projects"
     >
       <div className="max-w-container-max mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,7 +91,7 @@ export default function Projects() {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary dark:text-[#3B82F6] mb-8 sm:mb-10 md:mb-14"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-8 sm:mb-10 md:mb-14"
         >
           Selected Projects
         </motion.h2>
@@ -105,7 +104,7 @@ export default function Projects() {
               className={`project-item flex flex-col ${project.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-center group relative`}
             >
               {/* Project Image */}
-              <div className="w-full md:flex-1 overflow-hidden rounded-xl shadow-lg border border-outline-variant dark:border-gray-700 aspect-video relative">
+              <div className="w-full md:flex-1 overflow-hidden rounded-xl shadow-lg border border-slate-200 dark:border-gray-700 aspect-video relative">
                 <div className="project-image-inner absolute inset-[-20%] w-[140%] h-[140%]">
                   <Image
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
@@ -126,7 +125,7 @@ export default function Projects() {
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="bg-tertiary/10 text-tertiary text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider"
+                      className="bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider"
                     >
                       {tag}
                     </span>
@@ -134,12 +133,12 @@ export default function Projects() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors leading-snug">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm md:text-[15px] text-on-surface/80 dark:text-gray-400 leading-relaxed">
+                <p className="text-xs sm:text-sm md:text-[15px] text-slate-600 dark:text-gray-400 leading-relaxed">
                   {project.desc}
                 </p>
 
@@ -148,7 +147,7 @@ export default function Projects() {
                   {project.tech.map((t, i) => (
                     <span
                       key={i}
-                      className="text-[10px] sm:text-xs bg-background dark:bg-gray-800 px-2.5 py-1 rounded border border-outline-variant dark:border-gray-700 text-on-surface/80 dark:text-gray-300 font-medium"
+                      className="text-[10px] sm:text-xs bg-white dark:bg-gray-800 px-2.5 py-1 rounded border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 font-medium"
                     >
                       {t}
                     </span>
@@ -162,7 +161,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, x: 5 }}
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary dark:text-[#3B82F6] hover:underline underline-offset-2 transition-all"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline underline-offset-2 transition-all"
                   >
                     <span className="material-symbols-outlined text-[16px] sm:text-[18px]">open_in_new</span>
                     Live
@@ -173,7 +172,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, x: 5 }}
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary dark:text-[#3B82F6] hover:underline underline-offset-2 transition-all"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline underline-offset-2 transition-all"
                   >
                     <span className="material-symbols-outlined text-[16px] sm:text-[18px]">code</span>
                     Code

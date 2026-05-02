@@ -14,8 +14,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Meriem | Full Stack Developer Portfolio",
-  description: "Crafting robust digital experiences with a focus on performance, scalability, and user-centric design.",
+  title: "Amirul | Frontend Web Developer Portfolio",
+  description: "I build fast, responsive, and user-focused web applications using modern technologies like React. Focused on clean UI, performance, and real-world problem solving.",
 };
 
 import SmoothScroll from "@/components/SmoothScroll";

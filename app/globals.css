@@ -34,6 +34,10 @@
   .bg-secondary      { background-color: var(--color-secondary); }
   .bg-tertiary       { background-color: var(--color-tertiary); }
   .text-on-surface-variant { color: var(--color-on-surface-variant); }
+  /* Explicit muted text utilities (opacity-based tokens don't work reliably) */
+  .text-muted        { color: #64748b; }  /* slate-500 */
+  .text-body         { color: #475569; }  /* slate-600 */
+  .text-heading      { color: #0f172a; }  /* slate-900 */
 }
 
 :root {

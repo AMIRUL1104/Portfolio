@@ -49,6 +49,22 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+
+// mobile nav click handler
+const handleMobileNavClick = (e, href) => {
+  e.preventDefault();
+  setMenuOpen(false);
+
+  // Small delay so menu closes before scroll fires
+  setTimeout(() => {
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, 300);
+};
+
+
   return (
     <motion.nav 
       style={{ height, backgroundColor: isDark ? darkBackgroundColor : backgroundColor, backdropBlur }}
@@ -116,31 +132,34 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Dropdown */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            ref={menuRef}
-            className="md:hidden overflow-hidden bg-white dark:bg-background border-t border-gray-100 dark:border-gray-800"
-          >
-            <ul className="flex flex-col gap-1 px-4 pb-6 pt-2">
-              {navLinks.map(({ label, href }) => (
-                <li key={href}>
-                  <a 
-                    href={href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block w-full px-4 py-3 text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-white rounded-lg transition-all"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              ref={menuRef}
+              className="md:hidden overflow-hidden bg-white dark:bg-background border-t border-gray-100 dark:border-gray-800"
+            >
+              <ul className="flex flex-col gap-1 px-4 pb-6 pt-2">
+                {navLinks.map(({ label, href }) => (
+                  <li key={href}>
+                    <button                          // ← changed from <a> to <button>
+                      onClick={(e) => handleMobileNavClick(e, href)}
+                      className="block w-full text-left px-4 py-3 text-sm font-bold
+                      text-gray-700 dark:text-gray-300 hover:bg-blue-50
+                      dark:hover:bg-blue-900/20 hover:text-blue-600
+                      dark:hover:text-white rounded-lg transition-all"
+                    >
+                      {label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
     </motion.nav>
   );
 }

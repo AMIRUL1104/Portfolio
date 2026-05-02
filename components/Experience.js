@@ -51,7 +51,6 @@ export default function Experience() {
   ];
 
   useGSAP(() => {
-    // Draw vertical lines
     const lines = gsap.utils.toArray('.timeline-line');
     lines.forEach((line) => {
       gsap.from(line, {
@@ -82,22 +81,22 @@ export default function Experience() {
       />
 
       {/* Period */}
-      <span className="text-[10px] sm:text-xs font-bold text-tertiary uppercase tracking-widest">
+      <span className="text-[10px] sm:text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
         {period}
       </span>
 
       {/* Role / Degree */}
-      <h3 className="text-sm sm:text-base md:text-[15px] font-bold text-on-surface dark:text-white mt-0.5 leading-snug">
+      <h3 className="text-sm sm:text-base md:text-[15px] font-bold text-slate-900 dark:text-white mt-0.5 leading-snug">
         {title}
       </h3>
 
       {/* Company / School */}
-      <p className="text-xs sm:text-sm text-secondary dark:text-[#3B82F6] font-semibold mb-2 mt-0.5">
+      <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-semibold mb-2 mt-0.5">
         {subtitle}
       </p>
 
       {/* Description */}
-      <p className="text-xs sm:text-[13px] md:text-sm text-on-surface/70 dark:text-gray-400 leading-relaxed">
+      <p className="text-xs sm:text-[13px] md:text-sm text-slate-600 dark:text-gray-400 leading-relaxed">
         {desc}
       </p>
     </motion.div>
@@ -106,7 +105,7 @@ export default function Experience() {
   return (
     <section
       ref={containerRef}
-      className="bg-white dark:bg-background py-10 sm:py-14 md:py-20 max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="bg-white dark:bg-[#0F172A] py-10 sm:py-14 md:py-20 max-w-container-max mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
       id="experience"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-14 md:gap-10 lg:gap-16">
@@ -117,13 +116,13 @@ export default function Experience() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 md:mb-10"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8 md:mb-10"
           >
             Experience
           </motion.h2>
 
           <div className="relative ml-3 sm:ml-4 space-y-6 sm:space-y-8">
-            <div className="timeline-line absolute left-0 top-2 bottom-0 w-0.5 bg-primary/20 dark:border-gray-700" />
+            <div className="timeline-line absolute left-0 top-2 bottom-0 w-0.5 bg-blue-200 dark:bg-gray-700" />
             {experiences.map((exp, index) => (
               <TimelineItem
                 key={index}
@@ -133,8 +132,8 @@ export default function Experience() {
                 title={exp.role}
                 subtitle={exp.company}
                 desc={exp.desc}
-                dotColor="bg-primary"
-                ringColor="ring-white dark:ring-background"
+                dotColor="bg-blue-600 dark:bg-blue-500"
+                ringColor="ring-white dark:ring-[#0F172A]"
               />
             ))}
           </div>
@@ -146,13 +145,13 @@ export default function Experience() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 md:mb-10"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8 md:mb-10"
           >
             Education
           </motion.h2>
 
           <div className="relative ml-3 sm:ml-4 space-y-6 sm:space-y-8">
-            <div className="timeline-line absolute left-0 top-2 bottom-0 w-0.5 bg-tertiary/20 dark:border-gray-700" />
+            <div className="timeline-line absolute left-0 top-2 bottom-0 w-0.5 bg-amber-200 dark:bg-gray-700" />
             {education.map((edu, index) => (
               <TimelineItem
                 key={index}
@@ -162,8 +161,8 @@ export default function Experience() {
                 title={edu.degree}
                 subtitle={edu.school}
                 desc={edu.desc}
-                dotColor="bg-tertiary"
-                ringColor="ring-white dark:ring-background"
+                dotColor="bg-amber-500 dark:bg-amber-400"
+                ringColor="ring-white dark:ring-[#0F172A]"
               />
             ))}
           </div>
