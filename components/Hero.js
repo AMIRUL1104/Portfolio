@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
-import { FaLinkedin, FaGithub, FaFacebook } from 'react-icons/fa';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -96,13 +96,14 @@ export default function Hero() {
 
           <div className="flex gap-2 items-center justify-center">
             {[
-              { icon: <FaLinkedin className="text-[22px]" />, label: "LinkedIn" },
-              { icon: <FaGithub className="text-[22px]" />, label: "GitHub" },
-              { icon: <FaFacebook className="text-[22px]" />, label: "Facebook" }
+              { icon: <FaLinkedin className="text-[22px]" />, label: "LinkedIn", href: "https://linkedin.com/in/amirulislamdev" },
+              { icon: <FaGithub className="text-[22px]" />, label: "GitHub", href: "https://github.com/AMIRUL1104" },
             ].map((social, i) => (
               <motion.a 
                 key={i}
-                href="#" 
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + (i * 0.1) }}

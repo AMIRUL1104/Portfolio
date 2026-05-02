@@ -1,4 +1,4 @@
-import { FaLinkedin, FaGithub, FaFacebook } from 'react-icons/fa';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -13,25 +13,22 @@ export default function Footer() {
         
         <div className="flex gap-6 items-center">
           <a 
-            href="#" 
+            href="https://linkedin.com/in/amirulislamdev"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-all hover:scale-110" 
             aria-label="LinkedIn"
           >
             <FaLinkedin className="text-2xl" />
           </a>
           <a 
-            href="#" 
+            href="https://github.com/AMIRUL1104"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-all hover:scale-110" 
             aria-label="GitHub"
           >
             <FaGithub className="text-2xl" />
-          </a>
-          <a 
-            href="#" 
-            className="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-all hover:scale-110" 
-            aria-label="Facebook"
-          >
-            <FaFacebook className="text-2xl" />
           </a>
         </div>
       </div>
