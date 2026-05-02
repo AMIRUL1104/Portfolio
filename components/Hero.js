@@ -1,6 +1,6 @@
 
-
 import Image from 'next/image';
+import { FaLinkedin, FaGithub, FaFacebook } from 'react-icons/fa';
 import heroImg from "@/public/assets/hero.png"; 
 
 export default function Hero() {
@@ -30,17 +30,17 @@ export default function Hero() {
           <div className="flex gap-2 items-center justify-center">
             {/* LinkedIn */}
             <a href="#" aria-label="LinkedIn" className="text-primary dark:text-[#3B82F6] hover:opacity-80 transition-opacity p-2 hover:bg-primary/5 rounded-full">
-              <span className="material-symbols-outlined text-[22px]">link</span>
+              <FaLinkedin className="text-[22px]" />
             </a>
             
             {/* GitHub */}
             <a href="#" aria-label="GitHub" className="text-primary dark:text-[#3B82F6] hover:opacity-80 transition-opacity p-2 hover:bg-primary/5 rounded-full">
-              <span className="material-symbols-outlined text-[22px]">code</span>
+              <FaGithub className="text-[22px]" />
             </a>
             
-            {/* Email */}
-            <a href="#" aria-label="Email" className="text-primary dark:text-[#3B82F6] hover:opacity-80 transition-opacity p-2 hover:bg-primary/5 rounded-full">
-              <span className="material-symbols-outlined text-[22px]">alternate_email</span>
+            {/* Facebook */}
+            <a href="#" aria-label="Facebook" className="text-primary dark:text-[#3B82F6] hover:opacity-80 transition-opacity p-2 hover:bg-primary/5 rounded-full">
+              <FaFacebook className="text-[22px]" />
             </a>
           </div>
         </div>
@@ -62,6 +62,17 @@ export default function Hero() {
             priority
           />
         </div>
+        {/* <div className="relative w-full h-full rounded-full border-4 border-blue-400 p-1.5 overflow-hidden bg-white dark:bg-gray-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
+  <Image
+    className="object-contain rounded-full"
+    alt="Professional portrait of Amirul Islam"
+    src={heroImg}
+    fill
+    sizes="(max-width: 768px) 176px, (max-width: 1024px) 288px, 384px"
+    priority
+  />
+</div> */}
+
       </div>
 
     </section>

@@ -1,3 +1,5 @@
+
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -15,32 +17,14 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen]   = useState(false);
   const menuRef                   = useRef(null);
 
-  /* ── Theme init ── */
+  /* ── Theme logic ── */
   useEffect(() => {
-    const saved      = localStorage.getItem('theme');
+    const saved = localStorage.getItem('theme');
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (saved === 'dark' || (!saved && systemDark)) {
       setIsDark(true);
       document.documentElement.classList.add('dark');
     }
-  }, []);
-
-  /* ── Close menu on outside click ── */
-  useEffect(() => {
-    const handler = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setMenuOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
-  /* ── Close menu on resize to desktop ── */
-  useEffect(() => {
-    const handler = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
   }, []);
 
   const toggleTheme = () => {
@@ -50,53 +34,55 @@ export default function Navbar() {
     localStorage.setItem('theme', newDark ? 'dark' : 'light');
   };
 
-  return (
-    <nav className="sticky top-0 w-full z-50 bg-background/80 dark:bg-[#0F172A]/80 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-800/20 shadow-sm transition-colors duration-300">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 md:h-20 flex items-center justify-between">
+  /* ── Interaction logic ── */
+  useEffect(() => {
+    const handler = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
-        {/* ── Logo ── */}
-        <a 
-          className="text-xl sm:text-2xl font-extrabold text-primary dark:text-white tracking-tight shrink-0"
-          href="#"
-        >
+  useEffect(() => {
+    const handler = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+
+  return (
+    <nav className="sticky top-0 w-full z-50 bg-white/80 dark:bg-[#0F172A]/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
+
+        {/* Logo */}
+        <a className="text-xl sm:text-2xl font-extrabold text-blue-600 dark:text-white tracking-tight" href="#">
           Amirul
         </a>
 
-        {/* ── Desktop nav ── */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8 font-semibold tracking-tight">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8 font-semibold">
           {navLinks.map(({ label, href }) => (
-            <a 
-              key={href}
-              href={href}
-              className="text-sm lg:text-base text-on-surface/60 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors"
-            >
+            <a key={href} href={href} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-white transition-colors">
               {label}
             </a>
           ))}
         </div>
 
-        {/* ── Right side: theme toggle + hamburger ── */}
-        <div className="flex items-center gap-1 sm:gap-2">
-
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-md transition-all group"
-            aria-label="Toggle theme"
-          >
-            <span className="material-symbols-outlined text-[20px] sm:text-[22px] text-primary dark:text-[#3B82F6] group-hover:scale-110 transition-transform block">
+        {/* Buttons Group */}
+        <div className="flex items-center gap-2">
+          
+          {/* 1. Theme Toggle */}
+          <button onClick={toggleTheme} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all">
+            <span className="material-symbols-outlined block text-blue-600 dark:text-blue-400">
               {isDark ? 'light_mode' : 'dark_mode'}
             </span>
           </button>
 
-          {/* Hamburger — mobile only */}
-          <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="md:hidden p-2 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-md transition-all"
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
+          {/* 2. Menu Button (Right side of toggle) */}
+          <button 
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all"
           >
-            <span className="material-symbols-outlined text-[22px] text-primary dark:text-[#3B82F6] block">
+            <span className="material-symbols-outlined block text-blue-600 dark:text-blue-400">
               {menuOpen ? 'close' : 'menu'}
             </span>
           </button>
@@ -104,20 +90,20 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── Mobile dropdown menu ── */}
+      {/* Mobile Dropdown (Column Layout) */}
       <div
         ref={menuRef}
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <ul className="flex flex-col px-4 sm:px-6 pb-4 pt-1 gap-1 bg-background/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-t border-gray-200/20 dark:border-gray-800/20">
+        <ul className="flex flex-col gap-1 px-4 pb-6 pt-2 bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-gray-800">
           {navLinks.map(({ label, href }) => (
             <li key={href}>
               <a 
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-semibold text-on-surface/70 dark:text-gray-400 hover:text-primary dark:hover:text-white hover:bg-primary/5 dark:hover:bg-white/5 transition-all"
+                className="block w-full px-4 py-3 text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-white rounded-lg transition-all"
               >
                 {label}
               </a>

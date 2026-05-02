@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
 
 @theme {
   --font-manrope: var(--font-manrope);
