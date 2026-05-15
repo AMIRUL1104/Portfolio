@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme {
   --font-manrope: var(--font-manrope);
   --font-inter: var(--font-inter);

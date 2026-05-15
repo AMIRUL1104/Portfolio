@@ -1,8 +1,47 @@
 import carromImg from "@/public/assets/carrom-pro.png";
 import notioImg from "@/public/assets/notio.png";
 import keenImg from "@/public/assets/keen.png";
+import suncartImg from "@/public/assets/suncartImg.png";
 
 export const projects = [
+  {
+    id: 4,
+    name: "SunCart",
+    slug: "suncart",
+    image: suncartImg,
+    tags: ["E-Commerce", "Next.js", "Shopping App"],
+    techStack: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "DaisyUI",
+      "HeroUI",
+      "BetterAuth",
+      "JavaScript",
+      "LocalStorage",
+      "Animate.css",
+    ],
+    description:
+      "A modern and responsive eCommerce web application built with Next.js for summer-themed products like sunglasses, outfits, skincare, and beach accessories. Users can browse products, view detailed product information, manage cart functionality, authenticate securely, and complete a frontend checkout experience with smooth UI interactions and responsive design.",
+    liveLink: "https://sun-cart-taupe.vercel.app/",
+    github: "https://github.com/AMIRUL1104/SunCart",
+    challenges: [
+      "Implementing protected routes for product details and profile pages using authentication",
+      "Managing persistent cart functionality with LocalStorage while keeping UI state synchronized",
+      "Building a scalable eCommerce structure using Next.js App Router architecture",
+      "Creating responsive layouts and smooth user experience across mobile, tablet, and desktop devices",
+      "Implementing related product recommendation logic based on category matching",
+    ],
+    improvements: [
+      "Integrate real payment gateway functionality like Stripe or SSLCommerz",
+      "Connect a real backend database instead of static JSON product data",
+      "Add product search, advanced filtering, and sorting system",
+      "Implement admin dashboard for managing products and orders",
+      "Add order history and user purchase tracking functionality",
+      "Optimize performance further with server-side data fetching and image optimization",
+    ],
+    reverse: true,
+  },
   {
     id: 1,
     name: "Smart Task Dashboard",
