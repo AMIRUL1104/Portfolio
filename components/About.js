@@ -75,7 +75,7 @@ export default function About() {
           {/* Bio Text - রিক্রুটারদের ইমপ্যাক্ট দেখানোর জন্য পারফেক্ট কপি */}
           <div ref={textRef} className="space-y-4 sm:space-y-5">
             <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-800 dark:text-slate-300 leading-relaxed sm:leading-loose">
-              I'm{" "}
+              {` I'm`}{" "}
               <span className="font-semibold text-blue-600 dark:text-blue-400">
                 Amirul Islam
               </span>
@@ -85,10 +85,10 @@ export default function About() {
               and AI-powered features.
             </p>
             <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-800 dark:text-slate-300 leading-relaxed sm:leading-loose">
-              Alongside full stack development, I'm actively exploring advanced
+              {`Alongside full stack development, I'm actively exploring advanced
               AI integration, conversational interfaces, and workflow automation
               to build smarter products. I enjoy turning complex business
-              requirements into clean, maintainable, and production-ready code.
+              requirements into clean, maintainable, and production-ready code.`}
             </p>
             <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-800 dark:text-slate-300 leading-relaxed sm:leading-loose">
               My core goal is to contribute to high-impact software engineering

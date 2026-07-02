@@ -46,7 +46,7 @@ export default function Hero() {
       {/* Background Glow */}
       <div
         ref={glowRef}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-linear-to-tr from-primary/20 via-blue-500/10 to-transparent blur-[120px] rounded-full -z-10 bg-size-[200%_200%]"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-linear-to-tr from-primary/20 via-blue-500/10 to-transparent blur-[120px] rounded-full -z-10 bg-size-[200%_200%]"
       />
 
       {/* Text Content */}
@@ -145,7 +145,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-[550px] mx-auto md:mx-0"
+          className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-137.5 mx-auto md:mx-0"
         >
           I build production-ready full stack web applications using Next.js,
           React, Express.js, MongoDB, and AI APIs. Passionate about creating
@@ -220,7 +220,7 @@ export default function Hero() {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="relative shrink-0 w-2xs h-[288px] sm:w-96 sm:h-96  lg:w-115 lg:h-115 group mx-auto md:mx-0"
+        className="relative shrink-0 w-2xs h-72 sm:w-96 sm:h-96  lg:w-115 lg:h-115 group mx-auto md:mx-0"
       >
         <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-blue-500 blur-xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity" />
         <div className="relative w-full h-full rounded-full border-4 border-blue-400 p-1.5 overflow-hidden bg-white dark:bg-gray-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
