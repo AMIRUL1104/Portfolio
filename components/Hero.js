@@ -51,7 +51,24 @@ export default function Hero() {
 
       {/* Text Content */}
       <div className="flex-1 w-full space-y-4 sm:space-y-5 text-center md:text-left z-10">
-        <h1 className="flex flex-wrap justify-center md:justify-start gap-x-3 text-primary dark:text-[#3B82F6] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        {/* Badges Section */}
+        <div className="flex flex-wrap justify-center md:justify-start gap-2">
+          <span className="badge badge-success badge-outline gap-1 text-xs font-semibold">
+            🟢 Open to Work
+          </span>
+          <span className="badge badge-primary badge-outline text-xs font-semibold">
+            ⚡ Full Stack
+          </span>
+          <span className="badge badge-secondary badge-outline text-xs font-semibold">
+            🤖 AI Integration
+          </span>
+          <span className="badge badge-accent badge-outline text-xs font-semibold">
+            🌍 Remote Ready
+          </span>
+        </div>
+
+        {/* Name Title */}
+        {/* <h1 className="flex flex-wrap justify-center md:justify-start gap-x-3 text-primary dark:text-[#3B82F6] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight pt-2">
           {words.map((word, i) => (
             <span key={i} className="inline-block overflow-hidden pb-1">
               <motion.span
@@ -68,49 +85,103 @@ export default function Hero() {
               </motion.span>
             </span>
           ))}
+        </h1> */}
+
+        {/* Name Title */}
+        <h1 className="flex flex-wrap justify-center md:justify-start gap-x-3 text-primary dark:text-[#3B82F6] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight pt-2">
+          {words.map((word, i) => (
+            <span key={i} className="inline-block overflow-hidden pb-1">
+              <motion.span
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.1,
+                  ease: [0.33, 1, 0.68, 1],
+                }}
+                className="inline-block"
+              >
+                {word}
+              </motion.span>
+            </span>
+          ))}
+          {/* হাত নাড়ার ইমোজি যা নামের শেষে যুক্ত হবে এবং হালকা অ্যানিমেটেড থাকবে */}
+          <motion.span
+            animate={{ rotate: [0, 15, -10, 15, 0] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatDelay: 1,
+              ease: "easeInOut",
+            }}
+            className="inline-block origin-bottom-right"
+          >
+            👋
+          </motion.span>
         </h1>
 
+        {/* Role & DaisyUI Rotating Text */}
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-gray-800 dark:text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium"
+          className="text-gray-800 dark:text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium flex flex-wrap items-center justify-center md:justify-start gap-2"
         >
-          Frontend Developer
+          <span>Full Stack & AI Developer specialized in</span>
+          <span className="text-rotate text-primary dark:text-[#3B82F6] font-bold text-xl sm:text-2xl md:text-3xl">
+            <span className="justify-items-center md:justify-items-start">
+              <span>NEXT.JS</span>
+              <span>React.JS</span>
+              <span>EXPRESS.JS</span>
+              <span>MONGODB</span>
+              <span>JavaScript</span>
+              <span>AI-INTEGRATION</span>
+            </span>
+          </span>
         </motion.h2>
 
+        {/* High-impact Paragraph */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className=" text-red-700 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-[550px] mx-auto md:mx-0"
+          className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-[550px] mx-auto md:mx-0"
         >
-          I build fast, responsive, and user-focused web applications using
-          modern technologies like React. Focused on clean UI, performance, and
-          real-world problem solving.
+          I build production-ready full stack web applications using Next.js,
+          React, Express.js, MongoDB, and AI APIs. Passionate about creating
+          scalable products, intelligent user experiences, and solving
+          real-world business problems.
         </motion.p>
 
         {/* Buttons & Social Links */}
         <div className="flex flex-col sm:flex-row flex-wrap items-center md:items-start gap-3 sm:gap-4 pt-2">
-          <motion.button
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 20,
-              delay: 1,
-            }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full sm:w-auto bg-primary text-white px-6 py-2.5 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transition-all text-sm sm:text-base"
+          {/* Resume Download Link Wrapper */}
+          <a
+            href="/resume.pdf"
+            download="Amirul_Islam_Resume.pdf"
+            className="w-full sm:w-auto z-20"
           >
-            <span className="material-symbols-outlined text-[20px]">
-              download
-            </span>
-            Download Resume
-          </motion.button>
+            <motion.button
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+                delay: 1,
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full sm:w-auto bg-primary text-white px-6 py-2.5 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transition-all text-sm sm:text-base cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[20px]">
+                download
+              </span>
+              Download Resume
+            </motion.button>
+          </a>
 
+          {/* Social links exact as before */}
           <div className="flex gap-2 items-center justify-center">
             {[
               {
@@ -149,7 +220,7 @@ export default function Hero() {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="relative shrink-0 w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-120 lg:h-120 group mx-auto md:mx-0"
+        className="relative shrink-0 w-2xs h-[288px] sm:w-96 sm:h-96  lg:w-115 lg:h-115 group mx-auto md:mx-0"
       >
         <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-blue-500 blur-xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity" />
         <div className="relative w-full h-full rounded-full border-4 border-blue-400 p-1.5 overflow-hidden bg-white dark:bg-gray-800 shadow-2xl transition-transform duration-500 group-hover:scale-105">
