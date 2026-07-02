@@ -1,75 +1,89 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function Experience() {
   const containerRef = useRef(null);
 
+  // চ্যাটজিপিটির গাইডলাইন অনুযায়ী ফুল-স্ট্যাক ও এআই আর্কিটেকচার ফোকাসড কন্টেন্ট
   const experiences = [
     {
       period: "2025 — PRESENT",
-      role: "Frontend Developer (Self-Learning)",
-      company: "Personal Projects",
-      desc: "Building real-world web applications using React and Next.js. Implemented features like authentication (Better Auth), task dashboards, and interactive UI components. Actively improving performance, clean code practices, and pushing projects to GitHub regularly."
+      role: "Full Stack Web Developer & AI Integrator",
+      company: "Self-Employed / Independent Projects",
+      desc: "Architecting production-ready full stack web applications using Next.js, Express.js, and MongoDB. Designing secure REST APIs, role-based multi-dashboards (Admin/User), and integrating Stripe payment workflows. Actively implementing intelligent conversational flows and automated features using Google Gemini API.",
     },
     {
       period: "2024 — 2025",
-      role: "Frontend Practice & Fundamentals",
-      company: "Self-Driven Learning",
-      desc: "Focused on mastering JavaScript fundamentals, DOM manipulation, and responsive design. Built multiple small to medium projects to strengthen core problem-solving and UI development skills."
+      role: "Backend Infrastructure & Auth Systems",
+      company: "Advanced Software Architecture Practice",
+      desc: "Focused on building secure authentication models using JWT and Better Auth with cookie-based session tracking. Engineered database structures using MongoDB Atlas and Mongoose, optimizing API query performance and exploring state management patterns for fluid user experiences.",
     },
     {
       period: "2026 — PRESENT",
-      role: "Advanced Web Development Learning",
-      company: "Programming Hero",
-      desc: "Learning advanced frontend technologies, real-world project architecture, and modern development practices to become a job-ready frontend developer."
-    }
+      role: "Full Stack Web Development Professional Training",
+      company: "Programming Hero Bootcamp",
+      desc: "Immersed in advanced enterprise-level project development, industrial coding standards, and system design patterns. Strengthening engineering workflows, CI/CD deployment optimization, and production monitoring to deliver robust web applications.",
+    },
   ];
 
+  // তোমার দেওয়া অরিজিনাল এডুকেশন ডেটা (কোনো পরিবর্তন করা হয়নি)
   const education = [
     {
       period: "2026 — PRESENT",
       degree: "BSS in Economics (Honours)",
       school: "Murari Chand (MC) College, Sylhet",
-      desc: "Currently pursuing Honours (1st Year) while continuing frontend development and building real-world projects alongside academic studies."
+      desc: "Currently pursuing Honours (1st Year) while continuing frontend development and building real-world projects alongside academic studies.",
     },
     {
       period: "2023 — 2025",
       degree: "Higher Secondary Certificate (Science)",
       school: "Dakshin Sharma Government College",
-      desc: "Completed HSC in Science background with GPA 3.75."
+      desc: "Completed HSC in Science background with GPA 3.75.",
     },
     {
       period: "2023",
       degree: "Secondary School Certificate (Science)",
       school: "K A Janata High School",
-      desc: "Completed SSC in Science background with GPA 5.00."
-    }
+      desc: "Completed SSC in Science background with GPA 5.00.",
+    },
   ];
 
-  useGSAP(() => {
-    const lines = gsap.utils.toArray('.timeline-line');
-    lines.forEach((line) => {
-      gsap.from(line, {
-        scaleY: 0,
-        transformOrigin: "top",
-        ease: "none",
-        scrollTrigger: {
-          trigger: line,
-          start: "top 70%",
-          end: "bottom 70%",
-          scrub: true
-        }
+  useGSAP(
+    () => {
+      const lines = gsap.utils.toArray(".timeline-line");
+      lines.forEach((line) => {
+        gsap.from(line, {
+          scaleY: 0,
+          transformOrigin: "top",
+          ease: "none",
+          scrollTrigger: {
+            trigger: line,
+            start: "top 70%",
+            end: "bottom 70%",
+            scrub: true,
+          },
+        });
       });
-    });
-  }, { scope: containerRef });
+    },
+    { scope: containerRef },
+  );
 
-  const TimelineItem = ({ period, title, subtitle, desc, dotColor, ringColor, index, side }) => (
-    <motion.div 
-      initial={{ opacity: 0, x: side === 'left' ? -50 : 50 }}
+  const TimelineItem = ({
+    period,
+    title,
+    subtitle,
+    desc,
+    dotColor,
+    ringColor,
+    index,
+    side,
+  }) => (
+    <motion.div
+      initial={{ opacity: 0, x: side === "left" ? -50 : 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -109,10 +123,9 @@ export default function Experience() {
       id="experience"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-14 md:gap-10 lg:gap-16">
-
-        {/* Experience */}
+        {/* Experience Section */}
         <div className="relative">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -139,9 +152,9 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* Education */}
+        {/* Education Section */}
         <div className="relative">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -167,7 +180,6 @@ export default function Experience() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
