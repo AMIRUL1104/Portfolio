@@ -20,9 +20,9 @@ export default function Skills() {
       skills: [
         "React",
         "Next.js",
+        "TypeScript",
         "JavaScript (ES6+)",
         "Tailwind CSS",
-        "HTML5 & CSS3",
       ],
     },
     {
@@ -46,7 +46,7 @@ export default function Skills() {
       iconBg: "bg-amber-100 dark:bg-[#5c4100]/30",
       iconColor: "text-amber-700 dark:text-amber-300",
       desc: "Designing efficient schemas, complex data pipelines, and optimized storage systems.",
-      skills: ["MongoDB", "MongoDB Atlas", "Mongoose"],
+      skills: ["MongoDB", "MongoDB Atlas"],
     },
     {
       title: "AI Integration",
@@ -58,7 +58,7 @@ export default function Skills() {
         "Gemini API",
         "Function Calling",
         "AI Chatbots",
-        "Prompt Engineering",
+        "Context Engineering",
       ],
     },
   ];

@@ -2,11 +2,12 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaFacebook } from "react-icons/fa";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import heroImg from "@/public/assets/hero.png";
+import { CgMail } from "react-icons/cg";
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -68,26 +69,6 @@ export default function Hero() {
         </div>
 
         {/* Name Title */}
-        {/* <h1 className="flex flex-wrap justify-center md:justify-start gap-x-3 text-primary dark:text-[#3B82F6] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight pt-2">
-          {words.map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden pb-1">
-              <motion.span
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                  duration: 0.8,
-                  delay: i * 0.1,
-                  ease: [0.33, 1, 0.68, 1],
-                }}
-                className="inline-block"
-              >
-                {word}
-              </motion.span>
-            </span>
-          ))}
-        </h1> */}
-
-        {/* Name Title */}
         <h1 className="flex flex-wrap justify-center md:justify-start gap-x-3 text-primary dark:text-[#3B82F6] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight pt-2">
           {words.map((word, i) => (
             <span key={i} className="inline-block overflow-hidden pb-1">
@@ -105,7 +86,6 @@ export default function Hero() {
               </motion.span>
             </span>
           ))}
-          {/* হাত নাড়ার ইমোজি যা নামের শেষে যুক্ত হবে এবং হালকা অ্যানিমেটেড থাকবে */}
           <motion.span
             animate={{ rotate: [0, 15, -10, 15, 0] }}
             transition={{
@@ -127,14 +107,14 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-gray-800 dark:text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium flex flex-wrap items-center justify-center md:justify-start gap-2"
         >
-          <span>Full Stack & AI Developer specialized in</span>
+          <span>Full Stack Web Developer Specialized In</span>
           <span className="text-rotate text-primary dark:text-[#3B82F6] font-bold text-xl sm:text-2xl md:text-3xl">
             <span className="justify-items-center md:justify-items-start">
               <span>NEXT.JS</span>
               <span>React.JS</span>
               <span>EXPRESS.JS</span>
               <span>MONGODB</span>
-              <span>JavaScript</span>
+              <span>TypeScript</span>
               <span>AI-INTEGRATION</span>
             </span>
           </span>
@@ -148,8 +128,8 @@ export default function Hero() {
           className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-137.5 mx-auto md:mx-0"
         >
           I build production-ready full stack web applications using Next.js,
-          React, Express.js, MongoDB, and AI APIs. Passionate about creating
-          scalable products, intelligent user experiences, and solving
+          React,TypeScript Express.js, MongoDB, and AI APIs. Passionate about
+          creating scalable products, intelligent user experiences, and solving
           real-world business problems.
         </motion.p>
 
@@ -157,7 +137,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row flex-wrap items-center md:items-start gap-3 sm:gap-4 pt-2">
           {/* Resume Download Link Wrapper */}
           <a
-            href="/resume.pdf"
+            href="/AMIRUL_ISLAM_RESUME.pdf"
             download="Amirul_Islam_Resume.pdf"
             className="w-full sm:w-auto z-20"
           >
@@ -185,14 +165,20 @@ export default function Hero() {
           <div className="flex gap-2 items-center justify-center">
             {[
               {
+                icon: <FaGithub className="text-[22px]" />,
+                label: "GitHub",
+                href: "https://github.com/AMIRUL1104",
+              },
+              {
                 icon: <FaLinkedin className="text-[22px]" />,
                 label: "LinkedIn",
                 href: "https://linkedin.com/in/amirulislamdev",
               },
+
               {
-                icon: <FaGithub className="text-[22px]" />,
-                label: "GitHub",
-                href: "https://github.com/AMIRUL1104",
+                icon: <FaFacebook className="text-[22px]" />,
+                label: "Facebook",
+                href: "https://www.facebook.com/amirul.dev",
               },
             ].map((social, i) => (
               <motion.a

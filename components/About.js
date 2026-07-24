@@ -54,6 +54,29 @@ export default function About() {
     },
   ];
 
+  const stats = [
+    {
+      number: "7+",
+      title: "Full Stack Projects",
+      icon: "deployed_code",
+    },
+    {
+      number: "30+",
+      title: "Backend Features",
+      icon: "database",
+    },
+    {
+      number: "3+",
+      title: "AI Integrations",
+      icon: "smart_toy",
+    },
+    {
+      number: "10+",
+      title: "Authentication Systems",
+      icon: "shield_lock",
+    },
+  ];
+
   return (
     <section
       ref={containerRef}
@@ -81,8 +104,8 @@ export default function About() {
               </span>
               , a Full Stack Web Developer focused on building modern, scalable,
               and user-centric web applications. I specialize in React, Next.js,
-              Express.js, MongoDB, authentication systems, payment integration,
-              and AI-powered features.
+              TypeScript, Express.js, MongoDB, authentication systems, payment
+              integration, and AI-powered features.
             </p>
             <p className="reveal-line text-sm sm:text-base md:text-[15px] lg:text-base text-slate-800 dark:text-slate-300 leading-relaxed sm:leading-loose">
               {`Alongside full stack development, I'm actively exploring advanced
@@ -123,7 +146,46 @@ export default function About() {
             ))}
           </div>
 
+          {/* Stats Cards */}
+          <div className="md:col-span-2 grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.03 }}
+                className="group relative overflow-hidden rounded-2xl border border-slate-200/70 dark:border-slate-700 bg-white/70 dark:bg-slate-800/60 backdrop-blur-md p-5 shadow-sm hover:shadow-2xl hover:border-blue-400/40 transition-all duration-300"
+              >
+                {/* Gradient Glow */}
+                <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Icon */}
+                <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-500/10">
+                  <span className="material-symbols-outlined text-2xl text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                    {stat.icon}
+                  </span>
+                </div>
+
+                {/* Number */}
+                <h3 className="relative text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                  {stat.number}
+                </h3>
+
+                {/* Title */}
+                <p className="relative mt-2 text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {stat.title}
+                </p>
+
+                {/* Bottom Accent */}
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-linear-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
+              </motion.div>
+            ))}
+          </div>
+
           {/* Currently Building / Working on Section (অতিরিক্ত প্রফেশনাল ভাইব দেওয়ার জন্য) */}
+          {/* Featured Projects Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -135,29 +197,47 @@ export default function About() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              Currently Building & Focus Areas
+              Featured Projects
             </h4>
+
             <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-400">
               <li className="flex items-center gap-2">
-                🚀{" "}
-                <span className="font-medium text-slate-900 dark:text-slate-200">
-                  HireLoop
-                </span>{" "}
-                – AI Job Portal
+                📚
+                <a
+                  href="https://bookbridgebd.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-slate-900 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  BookBridge
+                </a>
+                – Used Academic Book Marketplace
               </li>
+
               <li className="flex items-center gap-2">
-                🏥{" "}
-                <span className="font-medium text-slate-900 dark:text-slate-200">
+                🏆
+                <a
+                  href="https://sportnest-rho.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-slate-900 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  SportNest
+                </a>
+                – Sports Facility Booking Platform
+              </li>
+
+              <li className="flex items-center gap-2">
+                🏥
+                <a
+                  href="https://medicare-connect-two.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-slate-900 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
                   MediCare Connect
-                </span>{" "}
-                – Hospital SaaS
-              </li>
-              <li className="flex items-center gap-2">
-                🤖{" "}
-                <span className="font-medium text-slate-900 dark:text-slate-200">
-                  Gemini Chatbots
-                </span>{" "}
-                – Function Calling
+                </a>
+                – Healthcare Management Platform
               </li>
             </ul>
           </motion.div>
