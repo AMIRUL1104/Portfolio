@@ -1,236 +1,397 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { FaGithub } from 'react-icons/fa';
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { FaGithub } from "react-icons/fa";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.33, 1, 0.68, 1] },
+    transition: {
+      duration: 0.6,
+      delay: i * 0.08,
+    },
   }),
 };
 
 export default function ProjectDetailsClient({ project }) {
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-[#0F172A] transition-colors duration-300">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#0F172A] transition-colors">
+      {/* ================= Hero ================= */}
 
-      {/* Hero Banner */}
-      <section className="relative w-full h-[40vh] sm:h-[50vh] md:h-[55vh] overflow-hidden">
+      <section className="relative h-[45vh] md:h-[60vh] overflow-hidden">
         <Image
-          src={project.image}
-          alt={project.name}
+          src={project.thumbnail}
+          alt={project.title}
           fill
           priority
-          className="object-cover object-center"
-          sizes="100vw"
+          className="object-cover"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80" />
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-[#0F172A]" />
 
         {/* Back Button */}
-        <div className="absolute top-5 left-4 sm:left-8 z-10">
+
+        <div className="absolute top-6 left-4 sm:left-8 z-20">
           <Link href="/#projects">
             <motion.span
-              whileHover={{ x: -4 }}
-              className="inline-flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-semibold cursor-pointer bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full transition-all"
+              whileHover={{ x: -5 }}
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full cursor-pointer"
             >
-              <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+              <span className="material-symbols-outlined">arrow_back</span>
               Back to Projects
             </motion.span>
           </Link>
         </div>
 
-        {/* Title overlay */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-8 pb-8 sm:pb-10 max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="flex flex-wrap gap-2 mb-3">
-              {project.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="bg-amber-400/90 text-amber-900 text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider"
-                >
-                  {tag}
+        {/* Hero Content */}
+
+        <div className="absolute bottom-0 left-0 right-0 pb-10">
+          <div className="max-w-6xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              {/* badges */}
+
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                  {project.category}
                 </span>
-              ))}
-            </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight drop-shadow-lg">
-              {project.name}
-            </h1>
-          </motion.div>
+
+                <span className="bg-emerald-600 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                  {project.status}
+                </span>
+              </div>
+
+              <h1 className="text-3xl md:text-5xl font-bold text-white">
+                {project.title}
+              </h1>
+
+              <p className="mt-3 text-blue-100 text-lg">
+                {project.role} • {project.team} • {project.year}
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Content */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16 space-y-10 sm:space-y-14">
+      {/* ================= Body ================= */}
 
-        {/* Description + Links row */}
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+      <div className="max-w-6xl mx-auto px-4 py-12 space-y-14">
+        {/* About + CTA */}
 
-          {/* Description */}
+        <div className="grid lg:grid-cols-3 gap-10">
+          {/* Left */}
+
           <motion.div
-            custom={0}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="md:col-span-2 space-y-3"
+            className="lg:col-span-2"
           >
-            <h2 className="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2">
-              <span className="material-symbols-outlined text-[20px]">info</span>
-              About This Project
+            <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-5">
+              About Project
             </h2>
-            <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
-              {project.description}
+
+            <p className="leading-8 text-slate-700 dark:text-slate-300">
+              {project.fullDescription}
             </p>
           </motion.div>
 
-          {/* CTA Links */}
+          {/* Right */}
+
           <motion.div
-            custom={1}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-3 justify-start"
+            custom={1}
+            className="space-y-4"
           >
             <a
               href={project.liveLink}
               target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-500/20"
+              className="flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-3 font-semibold transition"
             >
-              <span className="material-symbols-outlined text-[18px]">open_in_new</span>
-              View Live Project
+              <span className="material-symbols-outlined">open_in_new</span>
+              Live Demo
             </a>
+
             <a
-              href={project.github}
+              href={project.github.frontend}
               target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 active:scale-95 dark:bg-gray-700 dark:hover:bg-gray-600 text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-all shadow-lg"
+              className="flex justify-center items-center gap-2 rounded-xl py-3 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition"
             >
-              <FaGithub className="text-[18px]" />
-              View on GitHub
+              <FaGithub />
+              Frontend Repository
+            </a>
+
+            <a
+              href={project.github.backend}
+              target="_blank"
+              className="flex justify-center items-center gap-2 rounded-xl py-3 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition"
+            >
+              <FaGithub />
+              Backend Repository
             </a>
           </motion.div>
         </div>
 
-        {/* Tech Stack */}
-        <motion.div
-          custom={2}
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          className="space-y-4"
-        >
-          <h2 className="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2">
-            <span className="material-symbols-outlined text-[20px]">stacks</span>
-            Tech Stack
+        {/* ================= Tech Stack ================= */}
+
+        <motion.section variants={fadeUp} initial="hidden" animate="visible">
+          <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-6">
+            Technology Stack
           </h2>
-          <div className="flex flex-wrap gap-2.5">
-            {project.techStack.map((tech, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                className="inline-flex items-center gap-1.5 bg-white dark:bg-gray-800/80 border border-blue-200 dark:border-blue-900/60 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full shadow-sm"
+
+          <div className="flex flex-wrap gap-3">
+            {project.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-blue-200 dark:border-slate-700 text-sm font-medium"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block" />
                 {tech}
-              </motion.span>
+              </span>
             ))}
           </div>
-        </motion.div>
+        </motion.section>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+        {/* ================= Project Overview ================= */}
 
-          {/* Challenges */}
-          <motion.div
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Key Features */}
+
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={2}
+            className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 p-6"
+          >
+            <h2 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-5">
+              Key Features
+            </h2>
+
+            <ul className="space-y-3">
+              {project.keyFeatures.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-slate-700 dark:text-slate-300"
+                >
+                  <span className="material-symbols-outlined text-blue-500">
+                    check_circle
+                  </span>
+
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+
+          {/* Core Features */}
+
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
             custom={3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="bg-white dark:bg-gray-800/60 border border-slate-200 dark:border-gray-700 rounded-2xl p-6 sm:p-7 space-y-4"
+            className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 p-6"
           >
-            <h2 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
-              <span className="material-symbols-outlined text-[20px] text-orange-500">warning</span>
-              Challenges Faced
+            <h2 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-5">
+              Core Features
             </h2>
-            <ul className="space-y-3">
-              {project.challenges.map((item, i) => (
-                <motion.li
-                  key={i}
-                  custom={i}
-                  variants={fadeUp}
-                  initial="hidden"
-                  animate="visible"
-                  className="flex gap-3 text-sm text-slate-600 dark:text-gray-300 leading-relaxed"
-                >
-                  <span className="material-symbols-outlined text-[18px] text-orange-400 mt-0.5 shrink-0">chevron_right</span>
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
 
-          {/* Improvements */}
-          <motion.div
-            custom={4}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="bg-white dark:bg-gray-800/60 border border-slate-200 dark:border-gray-700 rounded-2xl p-6 sm:p-7 space-y-4"
-          >
-            <h2 className="text-base sm:text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
-              <span className="material-symbols-outlined text-[20px] text-green-500">rocket_launch</span>
-              Future Improvements
-            </h2>
             <ul className="space-y-3">
-              {project.improvements.map((item, i) => (
-                <motion.li
-                  key={i}
-                  custom={i}
-                  variants={fadeUp}
-                  initial="hidden"
-                  animate="visible"
-                  className="flex gap-3 text-sm text-slate-600 dark:text-gray-300 leading-relaxed"
+              {project.backendFeatures.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-slate-700 dark:text-slate-300"
                 >
-                  <span className="material-symbols-outlined text-[18px] text-green-400 mt-0.5 shrink-0">check_circle</span>
-                  {item}
-                </motion.li>
+                  <span className="material-symbols-outlined text-blue-500">
+                    settings
+                  </span>
+
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.section>
         </div>
 
-        {/* Footer CTA */}
+        {/* ================= Security & Database ================= */}
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Authentication */}
+
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={4}
+            className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 p-6"
+          >
+            <h2 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-5">
+              Authentication & Security
+            </h2>
+
+            <ul className="space-y-3">
+              {project.authentication.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-slate-700 dark:text-slate-300"
+                >
+                  <span className="material-symbols-outlined text-green-500">
+                    shield
+                  </span>
+
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+
+          {/* Database */}
+
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={5}
+            className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 p-6"
+          >
+            <h2 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-5">
+              Database Design
+            </h2>
+
+            <div className="flex flex-wrap gap-3">
+              {project.database.map((item) => (
+                <span
+                  key={item}
+                  className="px-4 py-2 rounded-full bg-blue-50 dark:bg-slate-700 border border-blue-200 dark:border-slate-600 text-sm font-medium"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.section>
+        </div>
+
+        {/* ================= AI Features ================= */}
+
+        {project.aiFeatures?.length > 0 && (
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={6}
+            className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 p-6"
+          >
+            <h2 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-5">
+              AI Features
+            </h2>
+
+            <ul className="space-y-3">
+              {project.aiFeatures.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-slate-700 dark:text-slate-300"
+                >
+                  <span className="material-symbols-outlined text-purple-500">
+                    smart_toy
+                  </span>
+
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+        )}
+
+        {/* ================= Challenges ================= */}
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={7}
+            className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 p-6"
+          >
+            <h2 className="text-xl font-bold text-orange-500 mb-5">
+              Challenges Faced
+            </h2>
+
+            <ul className="space-y-3">
+              {project.challenges.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-slate-700 dark:text-slate-300"
+                >
+                  <span className="material-symbols-outlined text-orange-400">
+                    warning
+                  </span>
+
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+
+          <motion.section
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={8}
+            className="bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 p-6"
+          >
+            <h2 className="text-xl font-bold text-emerald-500 mb-5">
+              Future Improvements
+            </h2>
+
+            <ul className="space-y-3">
+              {project.improvements.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-slate-700 dark:text-slate-300"
+                >
+                  <span className="material-symbols-outlined text-emerald-500">
+                    rocket_launch
+                  </span>
+
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+        </div>
+
+        {/* ================= Footer CTA ================= */}
+
         <motion.div
-          custom={5}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-center pt-4 pb-2"
+          custom={9}
+          className="text-center pt-6"
         >
-          <p className="text-slate-500 dark:text-gray-400 text-sm mb-4">Want to see more of my work?</p>
+          <p className="text-slate-500 dark:text-slate-400 mb-5">
+            Interested in exploring more full-stack projects?
+          </p>
+
           <Link href="/#projects">
             <motion.span
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-200 font-semibold text-sm px-6 py-2.5 rounded-xl shadow hover:shadow-md transition-all cursor-pointer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold cursor-pointer transition"
             >
-              <span className="material-symbols-outlined text-[18px]">grid_view</span>
+              <span className="material-symbols-outlined">grid_view</span>
               View All Projects
             </motion.span>
           </Link>
         </motion.div>
-
       </div>
     </main>
   );

@@ -1,107 +1,107 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project }) {
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className={`project-item flex flex-col ${
-        project.reverse ? 'md:flex-row-reverse' : 'md:flex-row'
-      } gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-center group relative`}
+      className={`flex flex-col ${
+        project.reverse ? "md:flex-row-reverse" : "md:flex-row"
+      } gap-8 md:gap-12 items-center group`}
     >
-      {/* Project Image */}
-      <div className="w-full md:flex-1 overflow-hidden rounded-xl shadow-lg border border-slate-200 dark:border-gray-700 aspect-video relative">
-        <div className="project-image-inner absolute inset-[-20%] w-[140%] h-[140%]">
-          <Image
-            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
-            alt={project.name}
-            src={project.image}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+      {/* Image */}
+      <div className="relative w-full md:flex-1 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg aspect-video">
+        <Image
+          src={project.thumbnail}
+          alt={project.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent" />
+
+        {/* Category */}
+        <div className="absolute top-4 left-4 flex gap-2">
+          <span className="rounded-full bg-blue-600 text-white text-xs font-semibold px-3 py-1">
+            {project.category}
+          </span>
+
+          <span className="rounded-full bg-emerald-600 text-white text-xs font-semibold px-3 py-1">
+            {project.status}
+          </span>
         </div>
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
       </div>
 
-      {/* Project Info */}
-      <div className="w-full md:flex-1 space-y-3 sm:space-y-4">
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag, i) => (
-            <span
-              key={i}
-              className="bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
+      {/* Content */}
+      <div className="w-full md:flex-1">
         {/* Title */}
-        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
-          {project.name}
+        <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+          {project.title}
         </h3>
 
-        {/* Description */}
-        <p className="text-xs sm:text-sm md:text-[15px] text-slate-700 dark:text-gray-400 leading-relaxed line-clamp-3">
-          {project.description}
+        {/* Role */}
+        <p className="mt-1 text-sm text-blue-600 dark:text-blue-400 font-medium">
+          {project.role} • {project.team}
         </p>
 
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-1.5 sm:gap-2">
-          {project.techStack.map((t, i) => (
+        {/* Description */}
+        <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+          {project.shortDescription}
+        </p>
+
+        {/* Tech */}
+        <div className="flex flex-wrap gap-2 mt-5">
+          {project.techStack.slice(0, 6).map((tech) => (
             <span
-              key={i}
-              className="text-[10px] sm:text-xs bg-white dark:bg-gray-800 px-2.5 py-1 rounded border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 font-medium"
+              key={tech}
+              className="rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1 text-xs font-medium"
             >
-              {t}
+              {tech}
             </span>
           ))}
+
+          {project.techStack.length > 6 && (
+            <span className="rounded-md bg-slate-100 dark:bg-slate-700 px-3 py-1 text-xs font-semibold">
+              +{project.techStack.length - 6}
+            </span>
+          )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-3 sm:gap-4 pt-1 items-center">
-          {/* View Details CTA */}
+        {/* Actions */}
+        <div className="flex flex-wrap gap-3 mt-7">
           <Link href={`/projects/${project.slug}`}>
-            <motion.span
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-lg transition-colors shadow-md cursor-pointer"
-            >
-              <span className="material-symbols-outlined text-[16px]">visibility</span>
+            <button className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition">
               View Details
-            </motion.span>
+            </button>
           </Link>
 
-          {/* Live Link */}
-          <motion.a
+          <a
             href={project.liveLink}
             target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, x: 5 }}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline underline-offset-2 transition-all"
+            className="px-5 py-2 rounded-lg border border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 text-sm font-semibold transition"
           >
-            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">open_in_new</span>
-            Live
-          </motion.a>
+            Live Demo
+          </a>
 
-          {/* Code Link */}
-          <motion.a
-            href={project.github}
+          <a
+            href={project.github.frontend}
             target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, x: 5 }}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline underline-offset-2 transition-all"
+            className="px-5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-sm font-semibold transition hover:bg-slate-100 dark:hover:bg-slate-800"
           >
-            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">code</span>
-            Code
-          </motion.a>
-        </div>
+            Frontend
+          </a>
 
+          <a
+            href={project.github.backend}
+            target="_blank"
+            className="px-5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-sm font-semibold transition hover:bg-slate-100 dark:hover:bg-slate-800"
+          >
+            Backend
+          </a>
+        </div>
       </div>
     </motion.div>
   );
